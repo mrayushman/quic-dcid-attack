@@ -57,3 +57,27 @@ sudo ip addr del 172.16.0.125/24 dev enp6s21 2>/dev/null
 
 sudo python3 ~/quic_aware_nat_dcid.py
 ```
+
+
+
+# Tracking Agent
+
+## Terminal 1 — Start Tracking Agent
+
+```bash
+sudo pkill -9 python3 && sleep 2
+
+cd ~/quic-aware-middlebox/online && python3 agent.py &
+```
+
+## Verify Tracking Agent
+
+```bash
+sleep 1 && curl http://localhost:12002/count
+```
+
+Expected output:
+
+```text
+0
+```
