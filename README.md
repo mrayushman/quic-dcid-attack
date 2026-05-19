@@ -41,3 +41,19 @@ pkill -f dos_server
 
 python3 dos_server.py -c cert.pem -k key.pem --host 172.16.20.123 --port 4444
 ```
+
+# UPF / NAT Execution
+
+## Terminal 1 — Start QUIC-Aware NAT
+
+```bash
+sudo pkill -f quic_aware_nat && sudo conntrack -F
+
+sudo sysctl -w net.ipv4.conf.all.send_redirects=0
+
+sudo sysctl -w net.netfilter.nf_conntrack_udp_timeout=900
+
+sudo ip addr del 172.16.0.125/24 dev enp6s21 2>/dev/null
+
+sudo python3 ~/quic_aware_nat_dcid.py
+```
