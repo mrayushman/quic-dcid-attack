@@ -97,12 +97,3 @@ bash ultimate_attack_dcid.sh
 ```
 
 ---
-
-## Results
-
-| Metric | Value |
-|---|---|
-| Peak Linux conntrack | 100,000 (DoS!) |
-| Table 2 (our solution) | ~3,000 entries |
-| Reduction | ~33x fewer |
-| Push latency | 7–35ms |
