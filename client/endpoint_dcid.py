@@ -14,13 +14,26 @@ class Configuration:
 def send_to_agent(o_dcid, dcid, agent_ip='127.0.0.1', agent_port=9999):
     """Send DCID → O-DCID mapping to Tracking Agent"""
     try:
-        print(f"[DEBUG] Sending to agent: O-DCID={o_dcid.hex()[:16]}... DCID={dcid.hex()[:16]}...")
+        import time as _t23
+        _T2 = _t23.time()
+        try:
+            _ts = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            _ts.sendto(f"T2 {_T2:.6f}".encode(), ("127.0.0.1", 19999))
+            _ts.close()
+        except:
+            pass
         config = Configuration(o_dcid, dcid)
         message = pickle.dumps(config)
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.sendto(message, (agent_ip, agent_port))
+        _T3 = _t23.time()
+        try:
+            _ts = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            _ts.sendto(f"T3 {_T3:.6f}".encode(), ("127.0.0.1", 19999))
+            _ts.close()
+        except:
+            pass
         sock.close()
-        print(f"[DEBUG] Sent successfully!")
     except Exception as e:
         print(f"[DEBUG] Error: {e}")
 
