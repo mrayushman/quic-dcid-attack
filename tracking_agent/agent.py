@@ -83,7 +83,7 @@ tracking_agent_mappings {len(mapping.data)}
 
 import json as _json
 
-MIDDLEBOX_IP = "172.16.0.5"
+MIDDLEBOX_IP = "172.16.0.129"
 MIDDLEBOX_PORT = 13000
 
 # Persistent push socket — created once, reused
@@ -99,9 +99,15 @@ def push_to_middlebox(dcid_hex, gcid_hex):
 def store_cid(message):
     data = pickle.loads(message)
     mapping.store(data.original_cid, data.peer_cid)
-    print(f"[AGENT] Stored mapping: DCID={data.peer_cid.hex()[:16]}... -> O-DCID={data.original_cid.hex()[:16]}...")
-    # Push to middlebox immediately (proactive mode)
-    # Push ALL mappings proactively (not just migrations)
+    import time as _t4
+    _T4 = _t4.time()
+    import socket as _s4
+    try:
+        _ts = _s4.socket(_s4.AF_INET, _s4.SOCK_DGRAM)
+        _ts.sendto(f"T4 {_T4:.6f}".encode(), ("172.16.0.129", 19999))
+        _ts.close()
+    except:
+        pass
     push_to_middlebox(data.peer_cid.hex(), data.original_cid.hex())
 
 def get_cid(message):
