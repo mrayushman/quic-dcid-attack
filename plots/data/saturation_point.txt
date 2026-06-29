@@ -1,0 +1,2 @@
+CT=50000 T2=2247 T1=65871 Mig=94140 New=41906 Merged=45619
+Attack complete
